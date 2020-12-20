@@ -2,14 +2,24 @@
  * Home page react component. This component displays the title
  * and the input where the user can enter its integer.
  */
-import React, { useEffect, useState, useCallback } from "react";
-import { useLocation, useHistory } from "react-router";
+import React, {
+    useEffect,
+    useState,
+    useCallback
+} from "react";
+import {
+    useLocation,
+    useHistory
+} from "react-router";
 
 // api requests
 import { getRomanNumeralEquivalent } from './requests'
 
 // constants
-import { NUMBER_QUERY, RESULTS_PARAMS } from './constants'
+import {
+    NUMBER_QUERY,
+    RESULTS_PARAMS
+} from './constants'
 
 // components
 import ResultsPage from './ResultsPage';
@@ -28,7 +38,6 @@ const Home = () => {
     // Note: this useEffect will also be called when the url changes thanks to the dependency array
     useEffect(() => {
         const numInputInUrl = query.get(NUMBER_QUERY); // getting the query for number specifically
-        if (numInputInUrl) {
             async function getRomanNumber() { // immediately invoke this async inside the useEffect
                 setNumInput(numInputInUrl.toString());
                 const result = await getRomanNumeralEquivalent(numInputInUrl);
@@ -36,11 +45,6 @@ const Home = () => {
                 console.log(result.status)
             }
             getRomanNumber();
-        } else {
-            history.push( {
-                pathname: '/',
-            });
-        }
     }, [history.location.search]);
 
     // submitting form and calling the backend api to have the output
@@ -73,12 +77,12 @@ const Home = () => {
             </form>
             {output && output.status === 200 && (
                 <div>
-                    <ResultsPage className="response-pages" romanLetters={output.data}/>
+                    <ResultsPage romanLetters={output.data}/>
                 </div>
             )}
             {output && output.status !== 200 && (
                 <div>
-                    <ErrorPage className="response-pages" error={output}/>
+                    <ErrorPage error={output}/>
                 </div>
             )}
         </div>

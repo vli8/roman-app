@@ -201,45 +201,40 @@ var Home = function Home() {
     // we are making the call to the backend or cache. 
     // Note: this useEffect will also be called when the url changes thanks to the dependency array
     (0, _react.useEffect)(function () {
-        var numInputInUrl = query.get(_constants.NUMBER_QUERY); // getting the query for number specifically
-        if (numInputInUrl) {
-            var getRomanNumber = function () {
-                var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                    var result;
-                    return regeneratorRuntime.wrap(function _callee$(_context) {
-                        while (1) {
-                            switch (_context.prev = _context.next) {
-                                case 0:
-                                    // immediately invoke this async inside the useEffect
-                                    setNumInput(numInputInUrl.toString());
-                                    _context.next = 3;
-                                    return (0, _requests.getRomanNumeralEquivalent)(numInputInUrl);
+        // getting the query for number specifically
+        var getRomanNumber = function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                var result;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                // immediately invoke this async inside the useEffect
+                                setNumInput(numInputInUrl.toString());
+                                _context.next = 3;
+                                return (0, _requests.getRomanNumeralEquivalent)(numInputInUrl);
 
-                                case 3:
-                                    result = _context.sent;
+                            case 3:
+                                result = _context.sent;
 
-                                    setOutput(result);
-                                    console.log(result.status);
+                                setOutput(result);
+                                console.log(result.status);
 
-                                case 6:
-                                case "end":
-                                    return _context.stop();
-                            }
+                            case 6:
+                            case "end":
+                                return _context.stop();
                         }
-                    }, _callee, this);
-                }));
+                    }
+                }, _callee, this);
+            }));
 
-                return function getRomanNumber() {
-                    return _ref.apply(this, arguments);
-                };
-            }();
+            return function getRomanNumber() {
+                return _ref.apply(this, arguments);
+            };
+        }();
 
-            getRomanNumber();
-        } else {
-            history.push({
-                pathname: '/'
-            });
-        }
+        var numInputInUrl = query.get(_constants.NUMBER_QUERY);
+        getRomanNumber();
     }, [history.location.search]);
 
     // submitting form and calling the backend api to have the output
@@ -284,12 +279,12 @@ var Home = function Home() {
         output && output.status === 200 && _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement(_ResultsPage2.default, { className: "response-pages", romanLetters: output.data })
+            _react2.default.createElement(_ResultsPage2.default, { romanLetters: output.data })
         ),
         output && output.status !== 200 && _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement(_ErrorPage2.default, { className: "response-pages", error: output })
+            _react2.default.createElement(_ErrorPage2.default, { error: output })
         )
     );
 };
@@ -320,14 +315,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Results = function Results(props) {
     return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-            "h1",
+            'pre',
             null,
-            " Output: ",
-            props.romanLetters
-        )
+            'Output: '
+        ),
+        _react2.default.createElement('textarea', { value: props.romanLetters, readOnly: true, style: { width: 400 + 'px', height: 400 + 'px' } })
     );
 }; /**
     * Results page react component. This component renders the roman numericals translation

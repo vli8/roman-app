@@ -6,7 +6,8 @@ import React from "react";
 const Results = (props) => {
     return (
         <div>
-            <h1> Output: {props.romanLetters}</h1>
+            <pre>Output: </pre>
+            <textarea value={props.romanLetters} readOnly style={{width: 400 + 'px', height: 400 + 'px'}} />
         </div>
     )
 }
