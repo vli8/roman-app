@@ -51,7 +51,6 @@ const Home = () => {
     // submitting form and calling the backend api to have the output
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        console.log('im calllleeeed', numInput);
 
         history.push( {
             pathname: `/${RESULTS_PARAMS}`,

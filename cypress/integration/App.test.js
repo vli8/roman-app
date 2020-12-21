@@ -20,12 +20,10 @@ describe ('First Test', () => {
         cy.url().should('include', '/results?number=invalid');
         cy.get('b').should(($tag) => {
             const text = $tag.text();
-            console.log($tag.text());
             expect(text).to.equal('Status: 500');
         });
         cy.get('pre').should(($tag) => {
             const text = $tag.text();
-            console.log($tag.text());
             expect(text).to.equal(' Sorry, can\'t convert it - Internal Server Error: Error: No valid input found, please type in a valid number');
         });
     });
@@ -37,12 +35,10 @@ describe ('First Test', () => {
         cy.url().should('include', '/results?number=1343298472394723948729');
         cy.get('b').should(($tag) => {
             const text = $tag.text();
-            console.log($tag.text());
             expect(text).to.equal('Status: 500');
         });
         cy.get('pre').should(($tag) => {
             const text = $tag.text();
-            console.log($tag.text());
             expect(text).to.equal(' Sorry, can\'t convert it - Internal Server Error: Error: this input is too big, please try a smaller number sorry!');
         });
     });

@@ -26,7 +26,6 @@ const romanNumeralsAction = (input) => {
     const cacheValue = Cache.get(integerInput.toString());
     // return cache if found
     if (cacheValue) {
-        console.log('im cached', cacheValue)
         return cacheValue;
     } else {
         var digits = String(+input).split(''),
@@ -40,7 +39,6 @@ const romanNumeralsAction = (input) => {
             roman = (key[+digits.pop() + (i * 10)] || '') + roman;
     
         const romanOutput = Array(+digits.join('') + 1).join('M') + roman; 
-        console.log(romanOutput);
     
         // caching the output so we don't have to go through this process every time!
         Cache.set(integerInput.toString(), romanOutput);

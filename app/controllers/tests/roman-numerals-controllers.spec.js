@@ -7,8 +7,6 @@ describe('/controllers/roman-numerals-controllers', () => {
     it('returns the roman numeral given a valid input', () => {
         const input = 5;
         const expectedOutput = 'V';
-        const okok = romanNumeralsAction(input);
-        console.log(okok);
         expect(romanNumeralsAction(input)).to.equal(expectedOutput);
     });
 
