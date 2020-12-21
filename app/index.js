@@ -8,6 +8,9 @@ const resultRouter = require('./routes/results')
 const PORT = 8080;
 const app = express();
 
+// exporting app for testing purposes
+module.exports = app;
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

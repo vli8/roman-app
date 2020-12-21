@@ -11,7 +11,6 @@ router.post('/', (req, res, next) => {
         const resultPayload = romanAction(req.body.payload, res);
         res.status(200).send(resultPayload);
     } catch (e) {
-        console.log('caught in backend:', e)
         next(e);
     }
 });

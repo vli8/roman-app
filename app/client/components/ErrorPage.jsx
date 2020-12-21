@@ -6,8 +6,8 @@ import React from "react";
 const Results = (props) => {
     return (
         <div>
-            <h1>Status: {props.error.status}</h1>
-            <h1> Sorry, can't convert it - {props.error.data.message}</h1>
+            <b>Status: {props.error.status}</b>
+            <pre> Sorry, can't convert it - {props.error.data.message}</pre>
         </div>
     )
 }

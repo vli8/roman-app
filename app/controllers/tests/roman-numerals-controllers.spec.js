@@ -1,0 +1,30 @@
+const { expect } = require('chai');
+var assert = require('assert');
+// controllers
+const romanNumeralsAction = require('../roman-numerals-controllers');
+
+describe('/controllers/roman-numerals-controllers', () => {
+    it('returns the roman numeral given a valid input', () => {
+        const input = 5;
+        const expectedOutput = 'V';
+        const okok = romanNumeralsAction(input);
+        console.log(okok);
+        expect(romanNumeralsAction(input)).to.equal(expectedOutput);
+    });
+
+    it('returns the roman numeral with a big number', () => {
+        const input = 934210;
+        const expectedOutput = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMCCX';
+        expect(romanNumeralsAction(input)).to.equal(expectedOutput);
+    });
+
+    it('throws error if input is invalid', () => {
+        const input = 'invalid input';
+        assert.throws(() => { romanNumeralsAction(input) }, Error);
+    });
+
+    it('throws error if input is larger than 715799999999', () => {
+        const input = 120391840932840298402938402394802348;
+        assert.throws(() => { romanNumeralsAction(input) }, Error);
+    });
+});

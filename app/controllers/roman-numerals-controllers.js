@@ -23,7 +23,7 @@ const romanNumeralsAction = (input) => {
         throw new Error('this input is too big, please try a smaller number sorry!');
     }
 
-    cacheValue = Cache.get(integerInput.toString());
+    const cacheValue = Cache.get(integerInput.toString());
     // return cache if found
     if (cacheValue) {
         console.log('im cached', cacheValue)

@@ -37,19 +37,19 @@ const Home = () => {
     // we are making the call to the backend or cache. 
     // Note: this useEffect will also be called when the url changes thanks to the dependency array
     useEffect(() => {
-        const numInputInUrl = query.get(NUMBER_QUERY); // getting the query for number specifically
+        const numInputInUrl = query.get(NUMBER_QUERY) || ''; // getting the query for number specifically
             async function getRomanNumber() { // immediately invoke this async inside the useEffect
                 setNumInput(numInputInUrl.toString());
                 const result = await getRomanNumeralEquivalent(numInputInUrl);
                 setOutput(result);
-                console.log(result.status)
-            }
+            };
             getRomanNumber();
     }, [history.location.search]);
 
     // submitting form and calling the backend api to have the output
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
+        console.log('im calllleeeed', numInput);
 
         history.push( {
             pathname: `/${RESULTS_PARAMS}`,
@@ -65,15 +65,15 @@ const Home = () => {
 
     return (
         <div>
-            <h1> Welcome to the roman numeral app</h1>
-                <form onSubmit={handleSubmit}>
+            <h1 id="headerId">Welcome to the roman numeral app</h1>
+            <form onSubmit={handleSubmit}>
                 Enter your integer to translate into roman numerals
                 <br />
                 <br />
                 <hr />
                 <label name="integer-input">integer: </label>
-                <input type="text" name="integer-input" onChange={handleChange} defaultValue={numInput}/>
-                <input type="submit" value="Submit" />
+                <input id="text-input-area" type="text" name="integer-input" onChange={handleChange} defaultValue={numInput}/>
+                <input id="submit-button" type="submit" value="Submit" />
             </form>
             {output && output.status === 200 && (
                 <div>
