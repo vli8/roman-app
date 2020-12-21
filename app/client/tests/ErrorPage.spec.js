@@ -1,3 +1,5 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import {expect} from 'chai';
 import React from 'react';
 import enzyme, {shallow} from 'enzyme';

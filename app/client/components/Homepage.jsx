@@ -43,7 +43,9 @@ const Home = () => {
                 const result = await getRomanNumeralEquivalent(numInputInUrl);
                 setOutput(result);
             };
-            getRomanNumber();
+            if (history.location.pathname !== '/') {
+                getRomanNumber();
+            }
     }, [history.location.search]);
 
     // submitting form and calling the backend api to have the output
@@ -72,7 +74,7 @@ const Home = () => {
                 <br />
                 <hr />
                 <label name="integer-input">integer: </label>
-                <input id="text-input-area" type="text" name="integer-input" onChange={handleChange} defaultValue={numInput}/>
+                <input id="text-input-area" type="text" name="integer-input" onChange={handleChange} value={numInput} />
                 <input id="submit-button" type="submit" value="Submit" />
             </form>
             {output && output.status === 200 && (
@@ -80,7 +82,7 @@ const Home = () => {
                     <ResultsPage romanLetters={output.data}/>
                 </div>
             )}
-            {output && output.status !== 200 && (
+            {output && output.status !== 200 && history.location.pathname !== '/' && (
                 <div>
                     <ErrorPage error={output}/>
                 </div>
